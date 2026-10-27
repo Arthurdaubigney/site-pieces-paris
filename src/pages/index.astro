@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import CtaLink from '../components/CtaLink.astro';
+import Icons from '../components/Icons.astro';
+import LotTiles from '../components/LotTiles.astro';
+import Checker from '../components/Checker.astro';
+import Process from '../components/Process.astro';
+import Statement from '../components/Statement.astro';
+import Faq from '../components/Faq.astro';
+import Clip from '../components/Clip.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faq } from '../data/faq';
+
+const stage = [
+  { k: 'vatican2007', c: 'Vatican 2007, Benoît XVI' },
+  { k: 'sm2004', c: 'Saint-Marin 2004, Bartolomeo Borghesi' },
+  { k: 'vat2004', c: 'Vatican 2004, 75 ans de l’État' },
+  { k: 'lt2020', c: 'Lituanie 2020, Colline des Croix' },
+  { k: 'lt2021', c: 'Lituanie 2021, Dzūkija' },
+] as const;
+---
+<Base
+  title="Rachat et Estimation de Pièces de 2 € Rares | Numisma Paris"
+  description="Estimation gratuite et rachat de pièces de 2 € commémoratives et rares à Paris. Envoyez vos photos, recevez une réponse argumentée, sans engagement."
+  path="/"
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap grid hero__grid">
+      <div class="hero__text">
+        <h1 id="hero-title" data-reveal>Estimation et rachat de pièces de 2 € rares et commémoratives</h1>
+        <p class="hero__sub" data-reveal style="--i:1">
+          Monaco, Vatican, Saint-Marin, tirages limités, variantes de frappe : faites expertiser gratuitement vos pièces de 2 € à Paris, ou depuis chez vous.
+        </p>
+        <div class="hero__actions" data-reveal style="--i:2">
+          <CtaLink label="Estimation gratuite" />
+          <a class="link-arrow" href="#verifier"><span>Ma pièce a-t-elle de la valeur ?</span><Icons name="arrow" /></a>
+        </div>
+        <ul class="hero__facts" data-reveal style="--i:3">
+          <li><Icons name="check" />Sans engagement</li>
+          <li><Icons name="check" />Deux photos suffisent</li>
+          <li><Icons name="check" />Remise à Paris ou envoi sécurisé</li>
+        </ul>
+      </div>
+      <div class="stage" role="group" aria-label="Pièces de 2 euros rares présentées en fondu enchaîné">
+        {stage.map((s, i) => (
+          <div class="stage__coin" data-caption={s.c}>
+            <Photo name={s.k} width={760} sizes="(max-width: 980px) 80vw, 40vw" loading={i === 0 ? 'eager' : 'lazy'} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec field-surface" aria-labelledby="lots-title">
+    <div class="wrap">
+      <div class="grid sec-head">
+        <h2 id="lots-title" data-reveal>Les pièces de 2 € que nous recherchons</h2>
+        <p data-reveal style="--i:1">Micro-États, commémoratives à faible tirage, coffrets : un aperçu de ce que nous expertisons et rachetons.</p>
+      </div>
+      <LotTiles limit={8} />
+      <p style="margin-top:48px"><a class="link-arrow" href="/pieces-2-euros-rares/"><span>Voir toutes les pièces recherchées</span><Icons name="arrow" /></a></p>
+    </div>
+  </section>
+
+  <Checker />
+  <Process />
+  <Statement />
+  <section class="wrap" style="padding-bottom:var(--sec)" aria-label="Histoire de la frappe des monnaies"><Clip /></section>
+
+  <section class="sec field-surface" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="grid sec-head">
+        <h2 id="faq-title" data-reveal>Vos questions, nos réponses</h2>
+      </div>
+      <div class="grid"><Faq items={faq.slice(0, 5)} /></div>
+      <p style="margin-top:56px;text-align:center"><a class="link-arrow" href="/faq/"><span>Toutes les questions</span><Icons name="arrow" /></a></p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Faites estimer vos pièces."
+    text="Décrivez vos pièces et joignez vos photos : nous vous répondons avec une estimation gratuite et sans engagement."
+    photo="vat2004"
+    withForm
+  />
+</Base>

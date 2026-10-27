@@ -1,0 +1,21 @@
+---
+const { name, class: cls } = Astro.props as { name: 'arrow' | 'check' | 'chevron' | 'stars'; class?: string };
+---
+{name === 'arrow' && (
+  <svg class={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+)}
+{name === 'check' && (
+  <svg class={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true" focusable="false"><path d="m4 12.5 5 5L20 6.5" /></svg>
+)}
+{name === 'chevron' && (
+  <svg class={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true" focusable="false"><path d="m5 9 7 7 7-7" vector-effect="non-scaling-stroke" /></svg>
+)}
+{name === 'stars' && (
+  <svg class={cls} viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" focusable="false">
+    <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="2" />
+    {Array.from({ length: 12 }, (_, i) => {
+      const a = (i * 30 * Math.PI) / 180;
+      return <circle cx={16 + Math.sin(a) * 9} cy={16 - Math.cos(a) * 9} r="1.35" />;
+    })}
+  </svg>
+)}

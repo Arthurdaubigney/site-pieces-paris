@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.pieces-2-euros-paris.fr/sitemap-index.xml

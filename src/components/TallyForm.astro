@@ -1,0 +1,44 @@
+---
+/**
+ * Formulaire de contact Tally — composant réutilisable.
+ *
+ * Brancher le formulaire : créer le formulaire sur tally.so, puis renseigner son ID
+ * (la fin de l'URL tally.so/r/<ID>) dans la variable PUBLIC_TALLY_FORM_ID (fichier .env)
+ * ou dans src/config/site.ts. Sans ID, un repli par e-mail s'affiche en production
+ * et un avertissement apparaît en développement.
+ *
+ * Les paramètres d'URL de la page (?pays=…&type=…) sont transmis au formulaire :
+ * créez des champs masqués Tally portant ces noms pour pré-remplir la demande.
+ */
+import { site, tallyUrl } from '../config/site';
+import Icons from './Icons.astro';
+
+interface Props { id?: string; height?: number; class?: string }
+const { id = site.tallyFormId, height = 640, class: cls } = Astro.props;
+const embed = id
+  ? `https://tally.so/embed/${id}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`
+  : '';
+const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Demande d’estimation — pièces de 2 €')}&body=${encodeURIComponent('Bonjour,\n\nJe souhaite faire estimer mes pièces de 2 € (pays, année, état) :\n\n')}`;
+---
+<div class:list={['tally', cls]} data-tally-form data-embed={embed} data-height={height} id="formulaire">
+  {embed ? (
+    <>
+      <p class="tally__loading small" aria-hidden="true">Chargement du formulaire…</p>
+      <iframe data-tally-src={embed} title="Formulaire d’estimation gratuite de pièces de 2 euros" loading="lazy" width="100%" height={height}></iframe>
+      <noscript>
+        <p>Le formulaire nécessite JavaScript. <a href={tallyUrl}>Ouvrir le formulaire dans un nouvel onglet</a> ou écrivez-nous à <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+      </noscript>
+    </>
+  ) : (
+    <div class="tally__fallback">
+      {import.meta.env.DEV && (
+        <p class="tally__dev">
+          Formulaire Tally non branché. Renseignez <code>PUBLIC_TALLY_FORM_ID</code> dans <code>.env</code> (voir <code>.env.example</code>) ou dans <code>src/config/site.ts</code>.
+        </p>
+      )}
+      <h3>Décrivez-nous vos pièces</h3>
+      <p>Envoyez-nous quelques photos (pile et face) avec le pays et l’année : nous vous répondons avec une estimation gratuite.</p>
+      <a class="btn btn--ink" href={mailto}>Écrire par e-mail <Icons name="arrow" /></a>
+    </div>
+  )}
+</div>

@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../config/site';
+import credits from '../data/credits.json';
+---
+<Base
+  title="Mentions légales et crédits photos | Numisma Paris"
+  description="Mentions légales, informations sur l’éditeur du site, traitement des données personnelles et crédits des photographies utilisées sur ce site."
+  path="/mentions-legales/"
+  crumbs={[{ name: 'Mentions légales' }]}
+  noindex
+>
+  <PageHero h1="Mentions légales" lead="Informations légales, données personnelles et crédits des images." cta={false} photo="collection" />
+  <section class="sec field-surface">
+    <div class="wrap grid prose-grid">
+      <div class="prose-side"><h2>Éditeur</h2></div>
+      <div class="prose-main">
+        <p>{site.name} — {site.legalName}<br />SIRET : {site.siret}<br />{site.city}, {site.region}<br />Contact : <a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <h3>Données personnelles</h3>
+        <p>Les informations transmises via le formulaire (coordonnées, description et photos de pièces) servent uniquement à répondre à votre demande d’estimation. Elles ne sont ni cédées ni diffusées. Vous pouvez demander leur suppression à tout moment par e-mail. Le formulaire est fourni par Tally (tally.so).</p>
+        <h3>Avertissement</h3>
+        <p>Les exemples de pièces et les indications d’intérêt présentés sur ce site sont donnés à titre d’illustration. Ils ne constituent ni une cote ni une offre de prix : seule une estimation individuelle fait foi.</p>
+      </div>
+    </div>
+  </section>
+  <section class="sec" id="credits">
+    <div class="wrap grid prose-grid">
+      <div class="prose-side"><h2>Crédits photos</h2></div>
+      <div class="prose-main">
+        <ul class="dots">
+          {credits.map((c) => (
+            <li><a href={c.page} rel="noopener">{c.title}</a> — {c.creator}, {c.license}, via Wikimedia Commons.</li>
+          ))}
+          <li><a href="https://commons.wikimedia.org/wiki/File:AUT_%E2%80%94_Land_Tirol_%E2%80%94_Bezirk_Innsbruck-Land_%E2%80%94_Hall_in_Tirol_%E2%80%94_Burg_Hasegg_6_(M%C3%BCnzmuseum,_Walzenpr%C3%A4gewerk-Rekonstruktion_1571_hinten)_2021.webm" rel="noopener">Münzmuseum, Walzenprägewerk-Rekonstruktion 1571 (vidéo)</a> — Mateus2019, CC BY-SA 4.0, via Wikimedia Commons.</li>
+        </ul>
+        <p class="small muted">Polices : Gambarino et General Sans (Fontshare, licence libre d’utilisation).</p>
+      </div>
+    </div>
+  </section>
+</Base>

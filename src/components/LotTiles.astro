@@ -1,0 +1,25 @@
+---
+import { lots } from '../data/coins';
+import Photo from './Photo.astro';
+interface Props { limit?: number }
+const { limit = lots.length } = Astro.props;
+const transparent = new Set(['vatican2007', 'sm2004', 'vat2004', 'lt2020', 'lt2021']);
+---
+<ul class="tiles">
+  {lots.slice(0, limit).map((l, i) => (
+    <li data-reveal style={`--i:${i % 4}`}>
+      <a class="tile tilt" href="/pieces-2-euros-rares/" aria-label={`${l.country} ${l.year}, ${l.subject} — voir les pièces recherchées`}>
+        <div>
+          <div class:list={['tile__pic', transparent.has(l.photo) && 'tile__pic--coin']}>
+            <Photo name={l.photo} width={560} sizes="(max-width: 980px) 50vw, 25vw" />
+          </div>
+          <div class="tile__strip">
+            <div class="tile__row"><span class="tile__strong">{l.country}</span><span>{l.year}</span></div>
+            <div class="tile__row"><span>{l.kind}</span><span>{l.interest}</span></div>
+            <div class="tile__row"><span>{l.subject}</span></div>
+          </div>
+        </div>
+      </a>
+    </li>
+  ))}
+</ul>

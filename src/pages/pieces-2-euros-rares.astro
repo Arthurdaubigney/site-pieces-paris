@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import LotTiles from '../components/LotTiles.astro';
+import CtaBand from '../components/CtaBand.astro';
+import CtaLink from '../components/CtaLink.astro';
+import Photo from '../components/Photo.astro';
+import { sheet } from '../data/coins';
+---
+<Base
+  title="Pièces de 2 € Rares et Commémoratives Recherchées | Numisma"
+  description="Monaco, Vatican, Saint-Marin, commémoratives à faible tirage, variantes et coffrets BE : la liste des pièces de 2 € que nous expertisons et rachetons."
+  path="/pieces-2-euros-rares/"
+  crumbs={[{ name: 'Pièces recherchées' }]}
+>
+  <PageHero
+    h1="Pièces de 2 € rares et commémoratives recherchées"
+    lead="Toutes les pièces de 2 € n’ont pas la même valeur. Voici les familles que les collectionneurs s’arrachent, et que nous rachetons après expertise."
+    photo="pile"
+  />
+
+  <section class="sec field-surface" aria-labelledby="catalogue-title">
+    <div class="wrap">
+      <div class="grid sec-head">
+        <h2 id="catalogue-title" data-reveal>Un aperçu du catalogue</h2>
+        <p data-reveal style="--i:1">Des exemples de pièces que nous expertisons. Chaque estimation est établie pièce par pièce, selon l’année, le tirage et l’état.</p>
+      </div>
+      <LotTiles />
+    </div>
+  </section>
+
+  <section class="sheet-wrap" aria-labelledby="sheet-title" style="background:var(--bg)">
+    <div class="wrap grid sheet-grid">
+      <div class="sheet-copy" data-reveal>
+        <h2 id="sheet-title">Ce que nous rachetons</h2>
+        <p>La feuille de catalogue ci-contre résume les familles de pièces de 2 € qui ont un intérêt pour les collectionneurs. Un doute sur la vôtre ? Envoyez-nous une photo.</p>
+        <CtaLink label="Faire estimer ma pièce" />
+      </div>
+      <div class="sheet paper" data-reveal style="--i:2">
+        <h3>Pièces de 2 € recherchées</h3>
+        <p class="sheet__note">Intérêt indicatif pour les collectionneurs, selon l’état</p>
+        {sheet.map((g) => (
+          <div class="sheet__group">
+            <h4>{g.name}</h4>
+            {g.items.map((it) => <p class="sheet__item"><span>{it.n}</span><span>{it.v}</span></p>)}
+          </div>
+        ))}
+        <p class="sheet__foot">Estimation gratuite sur photos · Réponse argumentée</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec field-surface" aria-labelledby="valeur-title">
+    <div class="wrap grid split">
+      <div class="split__a" data-reveal>
+        <h2 id="valeur-title">Ce qui fait la valeur d’une pièce de 2 €</h2>
+        <h3 class="sr-only">Les quatre critères</h3>
+        <ul class="dots" style="display:grid;gap:14px;margin-top:28px">
+          <li><strong>Le tirage.</strong> Moins une pièce a été frappée, plus elle est recherchée. Les micro-États émettent des quantités minimes.</li>
+          <li><strong>L’état de conservation.</strong> Une pièce sans rayure, jamais circulée (fleur de coin), vaut bien plus qu’une pièce usée.</li>
+          <li><strong>Le millésime et le sujet.</strong> Certaines années ou certains thèmes sont plus demandés que d’autres.</li>
+          <li><strong>La demande du moment.</strong> Le marché des collectionneurs évolue : une estimation est toujours datée.</li>
+        </ul>
+      </div>
+      <div class="split__b" data-reveal style="--i:2">
+        <div class="frame"><Photo name="magnifier" width={900} sizes="(max-width: 980px) 100vw, 40vw" /></div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Vous pensez avoir une pièce rare ?" photo="sm2004" />
+</Base>

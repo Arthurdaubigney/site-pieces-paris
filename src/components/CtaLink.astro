@@ -1,0 +1,10 @@
+---
+import { formPath } from '../config/site';
+import Icons from './Icons.astro';
+interface Props { label?: string; variant?: 'primary' | 'soft' | 'ink'; query?: string; class?: string; block?: boolean }
+const { label = 'Estimation gratuite', variant = 'primary', query = '', class: cls, block } = Astro.props;
+const href = `${formPath}${query ? `?${query}` : ''}#formulaire`;
+---
+<a href={href} class:list={['btn', variant === 'soft' && 'btn--soft', variant === 'ink' && 'btn--ink', block && 'btn--block', cls]} data-cta>
+  {label} <Icons name="arrow" />
+</a>

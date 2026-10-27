@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Clip from '../components/Clip.astro';
+import Photo from '../components/Photo.astro';
+---
+<Base
+  title="Expertise Numismatique de Pièces de 2 € | Numisma Paris"
+  description="Notre méthode d’expertise des pièces de 2 € : identification, authentification par le poids et les dimensions, état de conservation et comparaison au marché."
+  path="/expertise/"
+  crumbs={[{ name: 'Expertise' }]}
+>
+  <PageHero
+    h1="Expertise numismatique des pièces de 2 €"
+    lead="Identifier, authentifier, évaluer l’état, comparer au marché : la méthode que nous appliquons à chaque pièce, sans raccourci."
+    photo="magnifier"
+  />
+
+  <section class="sec field-surface" aria-labelledby="m1">
+    <div class="wrap grid prose-grid">
+      <div class="prose-side" data-reveal><h2 id="m1">Une méthode en quatre temps</h2></div>
+      <div class="prose-main" data-reveal style="--i:2">
+        <h3>1. Identifier</h3>
+        <p>Pays émetteur, millésime, sujet, atelier monétaire : nous recoupons chaque détail avec les catalogues de référence pour savoir exactement de quelle pièce il s’agit.</p>
+        <h3>2. Authentifier</h3>
+        <p>Une pièce de 2 € authentique est bimétallique, mesure 25,75 mm de diamètre, pèse 8,5 g et porte une tranche inscrite. Un écart de poids ou de dimensions, ou un relief approximatif, alerte immédiatement.</p>
+        <h3>3. Évaluer l’état</h3>
+        <p>Rayures, chocs, usure du relief, éclat d’origine : l’état est apprécié à la loupe, en lumière rasante, selon l’échelle utilisée par les collectionneurs.</p>
+        <h3>4. Comparer au marché</h3>
+        <p>Nous confrontons la pièce aux ventes récentes d’exemplaires équivalents pour aboutir à une estimation argumentée, datée et expliquée.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="m2">
+    <div class="wrap">
+      <div class="grid sec-head"><h2 id="m2" data-reveal>Regarder de près, c’est tout le métier</h2></div>
+      <div class="band">
+        <div class="frame" data-reveal><Photo name="ultramacro" width={600} sizes="(max-width: 760px) 50vw, 33vw" /></div>
+        <div class="frame" data-reveal style="--i:1"><Photo name="macro" width={600} sizes="(max-width: 760px) 50vw, 33vw" /></div>
+        <div class="frame" data-reveal style="--i:2"><Photo name="pile" width={600} sizes="33vw" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:var(--sec)" aria-label="Histoire de la frappe des monnaies"><Clip /></section>
+  <CtaBand heading="Confiez-nous vos pièces." photo="sm2011" />
+</Base>

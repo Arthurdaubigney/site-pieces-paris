@@ -1,0 +1,23 @@
+---
+import { faq as defaultFaq, type Qa } from '../data/faq';
+import Icons from './Icons.astro';
+interface Props { items?: Qa[] }
+const { items = defaultFaq } = Astro.props;
+---
+<div class="faq__list" data-faq>
+  {items.map((it, i) => (
+    <article class="card" data-reveal style={`--n:${i % 4};--i:${i}`}>
+      <span class="card__tab">{it.tab}</span>
+      <div class="card__body">
+        <h3 class="card__h">
+          <button class="card__q" type="button" aria-expanded={i === 0 ? 'true' : 'false'} aria-controls={`faq-a-${i}`} id={`faq-q-${i}`}>
+            <span>{it.q}</span><Icons name="chevron" />
+          </button>
+        </h3>
+        <div class="card__a" id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`} data-open={i === 0 ? 'true' : 'false'}>
+          <div><p>{it.a}</p></div>
+        </div>
+      </div>
+    </article>
+  ))}
+</div>

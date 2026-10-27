@@ -1,0 +1,21 @@
+---
+import { site } from '../config/site';
+import { nav } from '../data/nav';
+import Icons from './Icons.astro';
+import CtaLink from './CtaLink.astro';
+const path = Astro.url.pathname;
+---
+<header class="header">
+  <div class="wrap header__bar">
+    <a class="brand" href="/" aria-label={`${site.name} — accueil`}>
+      <Icons name="stars" /> {site.name}
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span></button>
+    <nav class="nav" id="nav" aria-label="Navigation principale" data-open="false">
+      {nav.map((l) => <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>{l.label}</a>)}
+      <CtaLink label="Estimation gratuite" class="btn--mobile" />
+    </nav>
+    <CtaLink label="Estimation gratuite" class="hd-desktop" />
+    <CtaLink label="Estimer" class="hd-mobile" />
+  </div>
+</header>

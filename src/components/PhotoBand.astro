@@ -1,0 +1,16 @@
+---
+import type { PhotoKey } from '../data/images';
+import Photo from './Photo.astro';
+interface Props { items: PhotoKey[]; heading?: string; id?: string }
+const { items, heading, id = 'band-title' } = Astro.props;
+---
+<section class="sec" aria-labelledby={heading ? id : undefined} aria-label={heading ? undefined : 'Galerie de pièces de 2 euros'}>
+  <div class="wrap">
+    {heading && <div class="grid sec-head"><h2 id={id} data-reveal>{heading}</h2></div>}
+    <div class="band">
+      {items.map((k, i) => (
+        <div class="frame" data-reveal style={`--i:${i}`}><Photo name={k} width={640} sizes="(max-width: 760px) 50vw, 33vw" /></div>
+      ))}
+    </div>
+  </div>
+</section>

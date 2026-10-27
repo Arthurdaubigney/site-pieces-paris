@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import PageHero from '../components/PageHero.astro';
+import Process from '../components/Process.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Photo from '../components/Photo.astro';
+---
+<Base
+  title="Rachat de Pièces de 2 € Rares à Paris | Numisma Paris"
+  description="Vendez vos pièces de 2 € rares et commémoratives à Paris ou à distance : estimation gratuite, prix expliqué, règlement après contrôle des pièces."
+  path="/rachat-pieces-2-euros/"
+  crumbs={[{ name: 'Rachat' }]}
+>
+  <PageHero
+    h1="Rachat de pièces de 2 € rares et commémoratives"
+    lead="Vous avez décidé de vendre ? Nous rachetons vos pièces de 2 € à un prix expliqué, à Paris ou à distance, et réglons après contrôle."
+    photo="collection"
+    ctaLabel="Obtenir une estimation"
+  />
+
+  <section class="sec field-surface" aria-labelledby="prix-title">
+    <div class="wrap grid prose-grid">
+      <div class="prose-side" data-reveal><h2 id="prix-title">Comment nous fixons le prix</h2></div>
+      <div class="prose-main" data-reveal style="--i:2">
+        <p>Une pièce de 2 € vaut d’abord ce que les collectionneurs sont prêts à payer. Nous partons donc du marché, pas d’une grille : chaque proposition est argumentée et détaillée.</p>
+        <ul class="dots">
+          <li>Identification précise : pays, millésime, atelier, variante éventuelle.</li>
+          <li>Rareté réelle : tirage, disponibilité sur le marché, intérêt des collectionneurs.</li>
+          <li>État de conservation, examiné à la loupe sur vos photos puis en main.</li>
+          <li>Comparaison avec les ventes récentes de pièces équivalentes.</li>
+        </ul>
+        <p>Vous recevez l’estimation et ses raisons. Vous êtes libre d’accepter, de négocier ou de refuser : aucun frais, aucune obligation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="modalites-title">
+    <div class="wrap grid split">
+      <div class="split__a" data-reveal>
+        <h2 id="modalites-title">Deux façons de vendre vos pièces</h2>
+        <h3 style="font-size:1.8rem;margin-top:36px">En main propre à Paris</h3>
+        <p style="margin-top:12px">Nous convenons d’un rendez-vous. Les pièces sont contrôlées devant vous, et le règlement intervient une fois l’accord confirmé.</p>
+        <h3 style="font-size:1.8rem;margin-top:28px">Par envoi sécurisé</h3>
+        <p style="margin-top:12px">Vous nous expédiez vos pièces en suivi assuré. Nous les contrôlons dès réception et vous réglons si elles sont conformes à la description.</p>
+      </div>
+      <div class="split__b" data-reveal style="--i:2">
+        <div class="frame"><Photo name="sidaction" width={900} sizes="(max-width: 980px) 100vw, 40vw" /></div>
+        <p class="credit">Un coffret complet, avec écrin et certificat, se valorise davantage.</p>
+      </div>
+    </div>
+  </section>
+
+  <Process />
+  <PhotoBand items={['macro','pile','sm2004']} />
+  <CtaBand heading="Quelle est la valeur de vos pièces ?" photo="lt2021" />
+</Base>

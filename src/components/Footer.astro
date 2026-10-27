@@ -1,0 +1,34 @@
+---
+import { site } from '../config/site';
+import { nav } from '../data/nav';
+import Icons from './Icons.astro';
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="back paper">
+    <div class="grid back__grid">
+      <div class="back__msg">
+        <h2>Un mot, et nous regardons vos pièces.</h2>
+        <p>Envoyez deux photos et quelques informations : nous vous répondons avec une estimation honnête et argumentée, sans engagement.</p>
+        <a class="btn btn--ink" href="/estimation-gratuite/#formulaire">Demander mon estimation <Icons name="arrow" /></a>
+      </div>
+      <address class="back__addr" style="font-style:normal">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        {site.phone && <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>}
+        <span>{site.city}, {site.region}</span>
+        <span>Remise en main propre sur rendez-vous ou envoi sécurisé</span>
+      </address>
+    </div>
+    <nav class="back__nav" aria-label="Pied de page">
+      <a href="/estimation-gratuite/">Estimation gratuite</a>
+      {nav.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href="/expertise/">Expertise</a>
+      <a href="/mentions-legales/">Mentions légales</a>
+      <a href="/mentions-legales/#credits">Crédits photos</a>
+    </nav>
+    <p class="back__imprint small">© {year} {site.name}. Les valeurs et exemples cités sont indicatifs ; chaque estimation est établie pièce par pièce.</p>
+  </div>
+  <div class="wrap">
+    <p class="footer__word" aria-hidden="true">{site.name}</p>
+  </div>
+</footer>

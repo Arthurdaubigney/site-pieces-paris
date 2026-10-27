@@ -1,0 +1,27 @@
+---
+import type { PhotoKey } from '../data/images';
+import Photo from './Photo.astro';
+import CtaLink from './CtaLink.astro';
+import credits from '../data/credits.json';
+import { photos } from '../data/images';
+
+interface Props { h1: string; lead: string; photo?: PhotoKey; cta?: boolean; ctaLabel?: string }
+const { h1, lead, photo, cta = true, ctaLabel = 'Estimation gratuite' } = Astro.props;
+---
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="wrap grid page-hero__grid">
+    <div class="page-hero__text">
+      <h1 id="page-title" data-reveal>{h1}</h1>
+      <p class="lead" data-reveal style="--i:1">{lead}</p>
+      <div class="page-hero__actions" data-reveal style="--i:2">
+        {cta && <CtaLink label={ctaLabel} />}
+        <slot />
+      </div>
+    </div>
+    {photo && (
+      <div class="page-hero__media" data-reveal style="--i:2">
+        <div class="frame"><Photo name={photo} width={900} sizes="(max-width: 980px) 100vw, 40vw" loading="eager" /></div>
+      </div>
+    )}
+  </div>
+</section>

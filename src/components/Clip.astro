@@ -1,0 +1,12 @@
+---
+interface Props { caption?: string }
+const { caption = 'Reconstitution d’un laminoir monétaire de 1571, Münzmuseum de Hall in Tirol (Autriche).' } = Astro.props;
+---
+<figure class="clip" data-reveal>
+  <div class="frame clip__frame">
+    <video muted loop playsinline autoplay preload="metadata" poster="/video/munzmuseum-laminoir-poster.jpg" width="854" height="480" aria-label="Boucle vidéo : reconstitution d’un laminoir à monnaie du XVIe siècle" title="Reconstitution d’un laminoir monétaire de 1571" data-loop>
+      <source src="/video/munzmuseum-laminoir.webm" type="video/webm" />
+    </video>
+  </div>
+  <figcaption class="credit">{caption} <a href="/mentions-legales/#credits">Crédit</a></figcaption>
+</figure>

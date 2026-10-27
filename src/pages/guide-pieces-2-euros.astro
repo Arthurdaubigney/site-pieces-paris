@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Photo from '../components/Photo.astro';
+
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Guide des pièces de 2 euros commémoratives et rares',
+  inLanguage: 'fr-FR',
+  author: { '@type': 'Organization', name: 'Numisma Paris' },
+}];
+---
+<Base
+  title="Guide des Pièces de 2 € Commémoratives et Rares | Numisma"
+  description="Reconnaître une pièce de 2 € rare : tirage, micro-États, état de conservation, variantes et erreurs à éviter. Le guide pratique du collectionneur."
+  path="/guide-pieces-2-euros/"
+  crumbs={[{ name: 'Guide' }]}
+  schema={schema}
+>
+  <PageHero
+    h1="Guide des pièces de 2 € commémoratives et rares"
+    lead="Comment savoir si une pièce de 2 € vaut plus que deux euros ? Les repères essentiels pour regarder vos pièces autrement."
+    photo="ultramacro"
+    ctaLabel="Faire estimer une pièce"
+  />
+
+  <section class="sec field-surface" aria-labelledby="g1">
+    <div class="wrap grid prose-grid">
+      <div class="prose-side" data-reveal><h2 id="g1">Qu’est-ce qu’une 2 € commémorative ?</h2></div>
+      <div class="prose-main" data-reveal style="--i:2">
+        <p>Une pièce de 2 € possède deux faces : une face commune, identique dans toute la zone euro, et une face nationale choisie par le pays émetteur. Une <strong>commémorative</strong> change cette face nationale pour célébrer un événement, un anniversaire ou une personnalité.</p>
+        <p>Depuis 2004, les États de la zone euro peuvent émettre des 2 € commémoratives en nombre limité chaque année. La première émission commune à tous les pays date de 2007, pour les 50 ans du Traité de Rome. Ces pièces circulent comme n’importe quelle autre : on peut donc en trouver dans sa monnaie.</p>
+        <h3>Valeur faciale et valeur numismatique</h3>
+        <p>La valeur faciale reste de 2 € dans tous les cas. La valeur numismatique, elle, dépend de ce que les collectionneurs sont prêts à payer : elle peut être égale à la valeur faciale pour la grande majorité des pièces, et nettement supérieure pour quelques-unes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="g2">
+    <div class="wrap grid prose-grid">
+      <div class="prose-side" data-reveal><h2 id="g2">Repérer une pièce rare</h2></div>
+      <div class="prose-main" data-reveal style="--i:2">
+        <p>Quelques réflexes suffisent pour trier vos pièces :</p>
+        <ul class="dots">
+          <li><strong>Le pays.</strong> Monaco, le Vatican, Saint-Marin et Andorre émettent peu de pièces : elles intéressent presque toujours les collectionneurs.</li>
+          <li><strong>Le millésime.</strong> Les premières années d’émission d’un pays, ou les années à très faible tirage, sont les plus recherchées.</li>
+          <li><strong>Le sujet.</strong> Une commémorative à faible tirage vaut plus qu’une commémorative frappée à plusieurs millions d’exemplaires.</li>
+          <li><strong>Les détails.</strong> Une lettre, un symbole ou un détail de frappe inhabituel peut signaler une variante.</li>
+        </ul>
+        <h3>Le cas des micro-États</h3>
+        <p>Monaco, Saint-Marin, le Vatican et Andorre frappent des quantités très inférieures à celles des grands pays. Par exemple, le 2 € de Monaco de 2007 n’a été frappé qu’à 20 001 exemplaires, ce qui en fait l’une des pièces de 2 € les plus recherchées.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec field-surface" aria-labelledby="g3">
+    <div class="wrap grid split">
+      <div class="split__a" data-reveal>
+        <h2 id="g3">L’état de conservation</h2>
+        <p>Deux pièces identiques peuvent avoir des valeurs très différentes selon leur état. Le vocabulaire des collectionneurs va de <strong>TB</strong> (très bien) à <strong>FDC</strong> (fleur de coin, jamais circulée), en passant par TTB, SUP et SPL.</p>
+        <p>Une pièce de 2 € qui a beaucoup circulé porte des rayures et des chocs sur la tranche ; une pièce FDC garde son relief et son éclat d’origine. D’où un conseil : conservez à l’abri tout exemplaire intéressant.</p>
+      </div>
+      <div class="split__b" data-reveal style="--i:2">
+        <div class="frame"><Photo name="macro" width={900} sizes="(max-width: 980px) 100vw, 40vw" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="g4">
+    <div class="wrap grid prose-grid">
+      <div class="prose-side" data-reveal><h2 id="g4">Conserver sans abîmer</h2></div>
+      <div class="prose-main" data-reveal style="--i:2">
+        <ul class="dots">
+          <li><strong>Ne jamais nettoyer.</strong> Produit, brosse ou chiffon laissent des micro-rayures : la pièce perd de la valeur.</li>
+          <li><strong>Manipuler par la tranche,</strong> avec des gants en coton ou propres, jamais en appuyant sur les faces.</li>
+          <li><strong>Ranger à l’abri</strong> de l’humidité, dans une capsule, une alvéole ou un album adapté.</li>
+          <li><strong>Garder les coffrets complets :</strong> l’écrin et le certificat font partie de la valeur.</li>
+          <li><strong>Ne pas vendre au poids ni au premier venu :</strong> demandez toujours une estimation argumentée.</li>
+        </ul>
+        <h3>Un doute sur l’une de vos pièces ?</h3>
+        <p>Envoyez-nous deux photos : nous vous disons gratuitement si elle mérite d’être gardée, vendue ou simplement dépensée.</p>
+      </div>
+    </div>
+  </section>
+
+  <PhotoBand items={['sidaction','vat2004','chirac']} />
+  <CtaBand heading="Une pièce vous intrigue ?" photo="vatican2007" />
+</Base>

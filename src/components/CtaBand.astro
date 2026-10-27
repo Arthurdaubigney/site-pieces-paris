@@ -1,0 +1,26 @@
+---
+import type { PhotoKey } from '../data/images';
+import Photo from './Photo.astro';
+import CtaLink from './CtaLink.astro';
+import TallyForm from './TallyForm.astro';
+interface Props { heading?: string; text?: string; photo?: PhotoKey; withForm?: boolean; label?: string }
+const {
+  heading = 'Montrez-nous vos pièces.',
+  text = 'Deux photos suffisent pour une première analyse. Estimation gratuite, sans engagement, avec une réponse argumentée.',
+  photo = 'vatican2007',
+  withForm = false,
+  label = 'Demander mon estimation',
+} = Astro.props;
+---
+<section class="cta" aria-labelledby="cta-title">
+  <div class="wrap grid cta__grid">
+    <div class="cta__obj" data-reveal>
+      <Photo name={photo} width={1100} sizes="(max-width: 980px) 130vw, 60vw" />
+    </div>
+    <div class="cta__text" data-reveal style="--i:2">
+      <h2 id="cta-title">{heading}</h2>
+      <p>{text}</p>
+      {withForm ? <TallyForm /> : <CtaLink label={label} />}
+    </div>
+  </div>
+</section>

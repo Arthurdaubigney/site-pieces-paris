@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import { site } from '../config/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  crumbs?: { name: string; href?: string }[];
+  schema?: Record<string, unknown>[];
+  ogImage?: string;
+  noindex?: boolean;
+}
+const { title, description, path, crumbs = [], schema = [], ogImage = '/og.png', noindex = false } = Astro.props;
+
+// Garde-fous SEO : longueurs recommandées (title ≈ 55-60, description ≈ 145-155).
+if (title.length > 62 || title.length < 40) console.warn(`[SEO] title ${title.length} car. sur ${path} : « ${title} »`);
+if (description.length > 158 || description.length < 135) console.warn(`[SEO] description ${description.length} car. sur ${path}`);
+
+const canonical = new URL(path, site.url).href;
+const ogUrl = new URL(ogImage, site.url).href;
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${site.url}/#organization`,
+  name: site.name,
+  url: site.url,
+  description: 'Expertise, estimation gratuite et rachat de pièces de 2 euros rares et commémoratives.',
+  areaServed: { '@type': 'Country', name: 'France' },
+  address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.region, addressCountry: 'FR' },
+  email: site.email,
+  ...(site.phone ? { telephone: site.phone } : {}),
+  knowsAbout: ['Numismatique', 'Pièces de 2 euros commémoratives', 'Rachat de pièces de collection'],
+};
+const breadcrumb = crumbs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [{ name: 'Accueil', href: '/' }, ...crumbs].map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: c.name,
+        item: new URL(c.href ?? path, site.url).href,
+      })),
+    }
+  : null;
+const graph = [business, ...(breadcrumb ? [breadcrumb] : []), ...schema];
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex,follow" /> : <meta name="robots" content="index,follow,max-image-preview:large" />}
+    <meta name="theme-color" content="#161c1a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/gambarino-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {graph.map((g) => <script type="application/ld+json" set:html={JSON.stringify(g)} />)}
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <Header />
+    {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
+    <main id="contenu">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import '../scripts/main';
+    </script>
+  </body>
+</html>

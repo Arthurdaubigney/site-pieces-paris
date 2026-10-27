@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import TallyForm from '../components/TallyForm.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import Process from '../components/Process.astro';
+import Faq from '../components/Faq.astro';
+import Photo from '../components/Photo.astro';
+import { faq } from '../data/faq';
+---
+<Base
+  title="Estimation Gratuite de Pièces de 2 € Rares et Commémoratives"
+  description="Faites estimer gratuitement vos pièces de 2 € : envoyez deux photos et recevez une estimation argumentée, sans engagement, de notre cabinet à Paris."
+  path="/estimation-gratuite/"
+  crumbs={[{ name: 'Estimation gratuite' }]}
+>
+  <PageHero
+    h1="Estimation gratuite de vos pièces de 2 €"
+    lead="Décrivez vos pièces et joignez deux photos. Nous analysons, comparons au marché et vous répondons, sans aucun engagement."
+    cta={false}
+    photo="macro"
+  />
+
+  <section class="sec field-surface" aria-labelledby="form-title" style="padding-top:calc(var(--sec)*.5)">
+    <div class="wrap grid prose-grid">
+      <div class="prose-side" data-reveal>
+        <h2 id="form-title">Votre demande</h2>
+        <p class="muted" style="margin-top:20px">Deux minutes suffisent. Plus la description est précise, plus notre réponse l’est.</p>
+      </div>
+      <div class="prose-main" data-reveal style="grid-column: 5 / span 8; --i:2">
+        <TallyForm height={720} />
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="photos-title">
+    <div class="wrap grid split split--flip">
+      <div class="split__a" data-reveal>
+        <h2 id="photos-title">Réussir ses photos en trois gestes</h2>
+        <ul class="dots" style="display:grid;gap:14px;margin-top:28px">
+          <li>Photographiez les <strong>deux faces</strong> à plat, sur un fond uni, en lumière du jour et sans flash.</li>
+          <li>Ajoutez la <strong>tranche</strong> si elle porte une inscription, et l’écrin ainsi que le certificat pour un coffret.</li>
+          <li><strong>Ne nettoyez jamais</strong> la pièce : manipulez-la par la tranche, rangez-la dans une capsule.</li>
+        </ul>
+      </div>
+      <div class="split__b" data-reveal style="--i:2">
+        <div class="frame"><Photo name="collection" width={900} sizes="(max-width: 980px) 100vw, 40vw" /></div>
+      </div>
+    </div>
+  </section>
+
+  <PhotoBand items={['sm2004','vatican2007','lt2021']} />
+  <Process />
+
+  <section class="sec field-surface" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="grid sec-head"><h2 id="faq-title" data-reveal>Avant d’envoyer vos photos</h2></div>
+      <div class="grid"><Faq items={faq.slice(0, 5)} /></div>
+    </div>
+  </section>
+</Base>

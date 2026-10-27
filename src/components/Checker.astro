@@ -1,0 +1,39 @@
+---
+import { countries, kinds } from '../data/checker';
+import { formPath } from '../config/site';
+---
+<section class="check sec" aria-labelledby="check-title" id="verifier">
+  <div class="wrap grid check__grid">
+    <div class="check__intro" data-reveal>
+      <h2 id="check-title">Votre pièce de 2 € vaut-elle une expertise ?</h2>
+      <p>Choisissez le pays inscrit sur la face nationale et le type de pièce. Vous saurez en dix secondes si elle vaut une expertise.</p>
+    </div>
+    <div class="check__panel" data-reveal style="--i:2" data-checker data-form-path={formPath}>
+      <fieldset>
+        <label for="pays">Pays de la face nationale</label>
+        <select class="select" id="pays" name="pays">
+          <option value="">Choisir un pays</option>
+          {countries.map((c) => <option value={c.name} data-tier={c.tier}>{c.name}</option>)}
+          <option value="Autre" data-tier="common">Autre / je ne sais pas</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Type de pièce</legend>
+        <div class="seg" role="radiogroup" aria-label="Type de pièce" data-seg style="--i:0">
+          {kinds.map((k, i) => (
+            <label>
+              <input type="radio" name="type" value={k.label} data-kind={k.id} checked={i === 0} />
+              <span>{k.label}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <div class="verdict" aria-live="polite" data-verdict>
+        <div class="verdict__body" data-verdict-body>
+          <p class="verdict__title">Sélectionnez un pays</p>
+          <p>Le verdict s’affiche ici, avec ce que nous regardons en priorité sur votre pièce.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

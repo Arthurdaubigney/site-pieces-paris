@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faq } from '../data/faq';
+
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+}];
+---
+<Base
+  title="FAQ Estimation et Rachat de Pièces de 2 € Rares | Numisma"
+  description="Estimation gratuite, photos à envoyer, nettoyage, rachat à Paris : toutes les réponses à vos questions sur la vente de pièces de 2 € rares et commémoratives."
+  path="/faq/"
+  crumbs={[{ name: 'Questions fréquentes' }]}
+  schema={schema}
+>
+  <PageHero
+    h1="Questions fréquentes sur l’estimation et le rachat"
+    lead="Gratuité, photos, nettoyage, paiement : tout ce qu’il faut savoir avant de nous confier vos pièces de 2 €."
+    photo="sm2011"
+  />
+  <section class="sec field-surface" aria-label="Liste des questions">
+    <div class="wrap"><div class="grid"><Faq /></div></div>
+  </section>
+  <PhotoBand items={['sm2011','andorra','lt2020']} />
+  <CtaBand heading="Votre question n’est pas là ?" text="Envoyez-nous vos photos avec votre question : nous vous répondons personnellement." photo="vat2004" />
+</Base>
