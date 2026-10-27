@@ -20,3 +20,6 @@ npm run build    # génère dist/ (images optimisées en WebP, sitemap, JSON-LD)
 - `src/components` : Header, Footer, TallyForm, CtaLink, Checker (vérificateur), Process, Faq, LotTiles…
 - `src/data` : pièces, FAQ, images (alt/title), crédits.
 - Images : Wikimedia Commons (crédits dans `src/data/credits.json` et page mentions légales).
+
+## Déploiement Vercel
+Projet détecté automatiquement (Astro, sortie statique `dist/`, `vercel.json` fourni). Importer le dépôt sur Vercel, ajouter la variable `PUBLIC_TALLY_FORM_ID` (Settings → Environment Variables), puis mettre à jour le domaine dans `astro.config.mjs`, `src/config/site.ts` et `public/robots.txt`.
