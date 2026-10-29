@@ -480,11 +480,10 @@ ul.dots li::before { content: ''; position: absolute; left: 4px; top: 0.7em; wid
 .split .frame { aspect-ratio: 4/3; }
 @media (max-width: 980px) { .split__a, .split__b, .split--flip .split__a, .split--flip .split__b { grid-column: 1 / -1; order: 0; } }
 
-.band { display: grid; gap: 8px var(--gap); grid-template-columns: repeat(3, 1fr); }
-.band .frame { aspect-ratio: 3/4; }
-.band .frame:nth-child(2) { aspect-ratio: 1; align-self: end; }
-.band .frame--sq { aspect-ratio: 1; align-self: center; }
-.band .frame--sq img { object-fit: contain; }
+.band { display: grid; gap: var(--gap); grid-template-columns: repeat(3, 1fr); align-items: start; }
+.band .frame { aspect-ratio: 1; }
+.band .frame--sq img { object-fit: contain; padding: 4%; }
+.band .frame--sq:has(img[src*="chirac"], img[src*="sanmarinska"]) img { padding: 0; object-fit: cover; }
 @media (max-width: 760px) { .band { grid-template-columns: 1fr 1fr; } .band .frame:nth-child(3) { display: none; } }
 
 /* ---------------- Pied de page : le verso de la carte ---------------- */
