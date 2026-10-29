@@ -3,7 +3,7 @@ import { lots } from '../data/coins';
 import Photo from './Photo.astro';
 interface Props { limit?: number }
 const { limit = lots.length } = Astro.props;
-const transparent = new Set(['vatican2007', 'sm2004', 'vat2004', 'lt2020', 'lt2021']);
+const transparent = new Set(['vatican2007', 'sm2004', 'vat2004', 'lt2020', 'lt2021', 'andorra']);
 ---
 <ul class="tiles">
   {lots.slice(0, limit).map((l, i) => (

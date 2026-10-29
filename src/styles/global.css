@@ -420,9 +420,9 @@ h1, h2, h3, h4 {
 
 /* ---------------- Appel à l'action final + formulaire ---------------- */
 .cta { position: relative; overflow: hidden; background: var(--surface); }
-.cta__grid { min-height: min(90svh, 880px); align-items: center; row-gap: 40px; padding-block: var(--sec); }
-.cta__obj { grid-column: 1 / span 6; position: relative; align-self: stretch; min-height: 380px; }
-.cta__obj img { position: absolute; width: 130%; max-width: none; left: -14%; bottom: -26%; aspect-ratio: 1; object-fit: contain; }
+.cta__grid { align-items: center; row-gap: 40px; padding-block: var(--sec); }
+.cta__obj { grid-column: 1 / span 6; display: grid; place-items: center; }
+.cta__obj img { width: min(100%, 560px); height: auto; aspect-ratio: 1; object-fit: contain; }
 .cta__text { grid-column: 8 / span 5; }
 .cta__text h2 { font-size: var(--step-head); }
 .cta__text p { margin-top: 24px; }
@@ -430,8 +430,8 @@ h1, h2, h3, h4 {
 @media (max-width: 980px) {
   .cta__grid { padding-block: var(--sec) 0; }
   .cta__text { grid-column: 1 / -1; order: 1; }
-  .cta__obj { grid-column: 1 / -1; order: 2; min-height: 55svh; }
-  .cta__obj img { width: 130%; left: -6%; bottom: -30%; }
+  .cta__obj { grid-column: 1 / -1; order: 2; padding-bottom: var(--sec); }
+  .cta__obj img { width: min(86%, 460px); }
 }
 
 /* Formulaire Tally */
@@ -483,6 +483,8 @@ ul.dots li::before { content: ''; position: absolute; left: 4px; top: 0.7em; wid
 .band { display: grid; gap: 8px var(--gap); grid-template-columns: repeat(3, 1fr); }
 .band .frame { aspect-ratio: 3/4; }
 .band .frame:nth-child(2) { aspect-ratio: 1; align-self: end; }
+.band .frame--sq { aspect-ratio: 1; align-self: center; }
+.band .frame--sq img { object-fit: contain; }
 @media (max-width: 760px) { .band { grid-template-columns: 1fr 1fr; } .band .frame:nth-child(3) { display: none; } }
 
 /* ---------------- Pied de page : le verso de la carte ---------------- */
