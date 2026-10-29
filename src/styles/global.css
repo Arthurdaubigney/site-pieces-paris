@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------------
    Numisma Paris — feuille de style globale
    Direction : « maison de vente » (catalogue, lots, planches), vert-noir et os.
-   Un seul ton d'accent (jade) réservé aux actions. Pas de dégradé, pas d'ombre
+   Un seul ton d'accent (or) réservé aux actions. Pas de dégradé, pas d'ombre
    au repos, pas de filet : les surfaces se distinguent par un écart de ton.
    ------------------------------------------------------------------ */
 
@@ -31,7 +31,7 @@
   --surface-2: #29332f;
   --ink: #e3e2da;
   --muted: #c2c7bf;
-  --accent: #9fc7b8;
+  --accent: #d9ad4f;
   --accent-ink: #11171a;
   --paper: #e3e2da;
   --paper-ink: #161c1a;
@@ -144,7 +144,7 @@ h1, h2, h3, h4 {
 }
 .btn svg { width: 1.1em; height: 1.1em; transition: transform var(--duration-fast) var(--ease-smooth-out); }
 .btn:hover svg { transform: translateX(4px); }
-.btn:hover { transform: translateY(-2px); background: #b4d8ca; }
+.btn:hover { transform: translateY(-2px); background: #e6c06c; }
 .btn:active { transform: translateY(0) scale(0.98); transition-duration: var(--duration-micro); }
 .btn--soft { --btn-bg: var(--surface-2); --btn-ink: var(--ink); }
 .btn--soft:hover { background: #34413c; }
@@ -337,7 +337,7 @@ h1, h2, h3, h4 {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none' stroke='%2311171a' stroke-width='2'%3E%3Cpath d='m1 1 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 18px center;
 }
-.seg { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); background: #86b0a1; }
+.seg { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); background: #c39a3e; }
 .seg label { margin: 0; position: relative; z-index: 1; }
 .seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
 .seg span {
